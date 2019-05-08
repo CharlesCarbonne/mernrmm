@@ -19,7 +19,7 @@ export default class CreateRelease extends Component {
             release_band: '',
             release_year: '',
             release_format: '',
-            release_listened : false,
+            release_listened : true,
         }
     }
 
@@ -99,21 +99,21 @@ export default class CreateRelease extends Component {
             <div style={{marginTop: 10}}>
                 <h3>Create New Release</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group"> 
-                        <label>Title: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.release_title}
-                                onChange={this.onChangeReleaseTitle}
-                                />
-                    </div>
-                    <div className="form-group">
+                <div className="form-group">
                         <label>Band: </label>
                         <input 
                                 type="text" 
                                 className="form-control"
                                 value={this.state.release_band}
                                 onChange={this.onChangeReleaseBand}
+                                />
+                    </div>
+                    <div className="form-group"> 
+                        <label>Title: </label>
+                        <input  type="text"
+                                className="form-control"
+                                value={this.state.release_title}
+                                onChange={this.onChangeReleaseTitle}
                                 />
                     </div>
                     <div className="form-group">
