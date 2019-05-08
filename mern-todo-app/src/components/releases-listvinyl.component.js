@@ -27,10 +27,9 @@ export default class ReleasesList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/releases/')
+        axios.get('http://localhost:4000/releases/vinyl')
             .then(response => {
                 this.setState({ releases: response.data });
-                console.log(response.data)
             })
             .catch(function (error){
                 console.log(error);

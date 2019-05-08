@@ -25,6 +25,12 @@ class App extends Component {
                   <Link to="/cd" className="nav-link">Cd Releases</Link>
                 </li>
                 <li className="navbar-item">
+                  <Link to="/k7" className="nav-link">K7 Releases</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/vinyl" className="nav-link">Vinyl Releases</Link>
+                </li>
+                <li className="navbar-item">
                   <Link to="/create" className="nav-link">Create Release</Link>
                 </li>
               </ul>

@@ -42,6 +42,30 @@ releasesRoutes.route('/cd').get(function(req, res){
     })
 });
 
+releasesRoutes.route('/vinyl').get(function(req, res){
+    Release.find({'release_format': 'Vinyl' })
+    .sort([['release_band', 1], ['release_year', 1]])
+    .exec(function (err, vinylreleases) {
+        if (err){
+            console.log(err);
+        } else {
+            res.json(vinylreleases)
+        }
+    })
+});
+
+releasesRoutes.route('/k7').get(function(req, res){
+    Release.find({'release_format': 'K7' })
+    .sort([['release_band', 1], ['release_year', 1]])
+    .exec(function (err, k7releases) {
+        if (err){
+            console.log(err);
+        } else {
+            res.json(k7releases)
+        }
+    })
+});
+
 
 releasesRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
