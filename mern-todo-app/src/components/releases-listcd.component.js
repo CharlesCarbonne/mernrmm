@@ -26,7 +26,7 @@ export default class ReleasesList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/releases/')
+        axios.get('http://localhost:4000/releases/cd')
             .then(response => {
                 this.setState({ releases: response.data });
             })
@@ -65,7 +65,5 @@ export default class ReleasesList extends Component {
         </div>
         )
     }
-      /*
-     
-    */
+
 }

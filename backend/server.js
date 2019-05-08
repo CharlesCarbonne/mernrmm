@@ -19,14 +19,29 @@ connection.once('open', function() {
 })
 
 releasesRoutes.route('/').get(function(req, res) {
-    Release.find(function(err, releases) {
-        if (err) {
+    Release.find()
+        .sort([['release_band', 1], ['release_year', 1]])
+        .exec(function (err, cdreleases) {
+        if (err){
             console.log(err);
         } else {
-            res.json(releases);
+            res.json(cdreleases)
         }
-    });
+    })
 });
+
+releasesRoutes.route('/cd').get(function(req, res){
+    Release.find({ "release_format": "Cd" })
+       .sort('release_band', 'release_year')
+       .exec(function (err, cdreleases) {
+        if (err){
+            console.log(err);
+        } else {
+            res.json(cdreleases)
+        }
+    })
+});
+
 
 releasesRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
@@ -66,6 +81,12 @@ releasesRoutes.route('/add').post(function(req, res) {
             res.status(400).send('adding new release failed');
         });
 });
+
+releasesRoutes.route('/delete/all').get(function(req, res){
+    Release.remove({}, function(err) { 
+        res.json('Successfully removed');
+    });
+})
 
 releasesRoutes.route('/delete/:id').get(function(req, res) {
     Release.findByIdAndRemove({_id: req.params.id }, function(err, item) {

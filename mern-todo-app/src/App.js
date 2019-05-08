@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EditRelease from "./components/edit-release.component";
 import CreateRelease from "./components/create-release.component";
 import ReleasesList from "./components/releases-list.component";
+import ReleasesListCd from "./components/releases-listcd.component";
+
 
 class App extends Component {
   render() {
@@ -20,6 +22,9 @@ class App extends Component {
                   <Link to="/" className="nav-link">Releases</Link>
                 </li>
                 <li className="navbar-item">
+                  <Link to="/cd" className="nav-link">Cd Releases</Link>
+                </li>
+                <li className="navbar-item">
                   <Link to="/create" className="nav-link">Create Release</Link>
                 </li>
               </ul>
@@ -27,6 +32,7 @@ class App extends Component {
           </nav>
           <br/>
           <Route path="/" exact component={ReleasesList} />
+          <Route path="/cd" exact component={ReleasesListCd} />
           <Route path="/edit/:id" component={EditRelease} />
           <Route path="/create" component={CreateRelease} />
         </div>

@@ -6,7 +6,7 @@ mongod
 cd node/test
 
 cd backend
-nodemon server
+    nodemon server
 
 cd mern-todo-app
-npm start
+    npm start
