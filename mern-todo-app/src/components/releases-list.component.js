@@ -6,6 +6,7 @@ import axios from 'axios';
 const Release = props => (
 
     <tr>
+        <td className={props.release.release_listened ? 'listened' : ''}  width="20%" height="20%"><img src={props.release.release_imguri} width="70%" height="70%"></img></td>        
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_band}</td>
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_title}</td>
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_year}</td>
@@ -48,6 +49,7 @@ export default class ReleasesList extends Component {
             <table className="table table-striped" style={{ marginTop: 20 }} >
                 <thead>
                     <tr>
+                        <th>Img</th>
                         <th>Band</th>
                         <th>Title</th>
                         <th>Year</th>
