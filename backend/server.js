@@ -31,9 +31,9 @@ releasesRoutes.route('/').get(function(req, res) {
 });
 
 releasesRoutes.route('/cd').get(function(req, res){
-    Release.find({ "release_format": "Cd" })
-       .sort('release_band', 'release_year')
-       .exec(function (err, cdreleases) {
+    Release.find({'release_format': 'Cd' })
+    .sort([['release_band', 1], ['release_year', 1]])
+    .exec(function (err, cdreleases) {
         if (err){
             console.log(err);
         } else {
@@ -62,6 +62,7 @@ releasesRoutes.route('/update/:id').post(function(req, res) {
             release.release_format = req.body.release_format;
             release.release_year = req.body.release_year;
             release.release_listened = req.body.release_listened;
+            release.release_imguri = 'http://localhost/images/'+release.release_band +'_'+release.release_title+'.jpg'
             release.save().then(release => {
                 res.json('Release updated!');
             })

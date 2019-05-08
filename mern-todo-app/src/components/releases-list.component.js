@@ -13,7 +13,7 @@ const Release = props => (
         <td>
             <Link to={"/edit/"+props.release._id}>Edit</Link>
         </td>
-        <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_listened? <img src={checked} width="15%" height="15%"></img> : ''}</td>
+        <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_listened? <img src={checked} width="15%" height="15%" alt="check"></img> : ''}</td>
 
     </tr>
 )

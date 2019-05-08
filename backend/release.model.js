@@ -16,6 +16,9 @@ let Release = new Schema({
     },
     release_listened: {
         type: Boolean
+    },
+    release_imguri:{
+        type: String
     }
 });
 

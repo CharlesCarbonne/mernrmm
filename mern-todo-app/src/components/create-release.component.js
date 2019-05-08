@@ -11,6 +11,7 @@ export default class CreateRelease extends Component {
         this.onChangeReleaseYear = this.onChangeReleaseYear.bind(this);
         this.onChangeReleaseFormat = this.onChangeReleaseFormat.bind(this);
         this.onChangeReleaseListened = this.onChangeReleaseListened.bind(this);
+        this.onChangeReleaseimguri = this.onChangeReleaseimguri.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -18,7 +19,7 @@ export default class CreateRelease extends Component {
             release_band: '',
             release_year: '',
             release_format: '',
-            release_listened : false
+            release_listened : false,
         }
     }
 
@@ -40,6 +41,12 @@ export default class CreateRelease extends Component {
         });
     }
 
+    onChangeReleaseimguri(e) {
+        this.setState({
+            release_imguri: e.target.value
+        });
+    }
+
     onChangeReleaseYear(e) {
         this.setState({
             release_year: e.target.value
@@ -55,20 +62,14 @@ export default class CreateRelease extends Component {
     onSubmit(e) {
         e.preventDefault();
         
-        console.log(`Form submitted:`);
-        console.log(`Release Title ${this.state.release_title}`);
-        console.log(`Release Band: ${this.state.release_band}`);
-        console.log(`Release Year: ${this.state.release_format}`);
-        console.log(`Release Format: ${this.state.release_format}`);
-        console.log(`Release Listened: ${this.state.release_listened}`);
-
      
         const newRelease = {
             release_title: this.state.release_title,
             release_band: this.state.release_band,
             release_year: this.state.release_year,
             release_format: this.state.release_format,
-            release_listened: this.state.release_listened
+            release_listened: this.state.release_listened,
+            release_imguri: 'http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg'
         };
 
         axios.post('http://localhost:4000/releases/add', newRelease)
@@ -79,8 +80,18 @@ export default class CreateRelease extends Component {
             release_band: '',
             release_year: '',
             release_format: '',
-            release_listened: false
+            release_listened: false,
+            release_imguri: 'http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg'
         })
+    
+        console.log(`Form submitted:`);
+        console.log(`Release Title ${this.state.release_title}`);
+        console.log(`Release Band: ${this.state.release_band}`);
+        console.log(`Release Year: ${this.state.release_format}`);
+        console.log(`Release Format: ${this.state.release_format}`);
+        console.log(`Release Listened: ${this.state.release_listened}`);
+        console.log(`Release imguri: ${this.state.release_imguri}`);
+    
     }
 
     render() {
