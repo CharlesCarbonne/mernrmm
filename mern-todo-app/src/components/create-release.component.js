@@ -12,6 +12,8 @@ export default class CreateRelease extends Component {
         this.onChangeReleaseFormat = this.onChangeReleaseFormat.bind(this);
         this.onChangeReleaseListened = this.onChangeReleaseListened.bind(this);
         this.onChangeReleaseimguri = this.onChangeReleaseimguri.bind(this);
+        this.onChangeReleasecountryBand = this.onChangeReleasecountryBand.bind(this);
+        this.onChangeReleasemainStyle = this.onChangeReleasemainStyle.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -20,6 +22,8 @@ export default class CreateRelease extends Component {
             release_year: '',
             release_format: '',
             release_listened : true,
+            release_bandCountry: '',
+            release_mainStyle: '',
         }
     }
 
@@ -59,6 +63,18 @@ export default class CreateRelease extends Component {
         });
     }
 
+    onChangeReleasecountryBand(e) {
+        this.setState({
+            release_bandCountry: e.target.value
+        });
+    }
+
+    onChangeReleasemainStyle(e) {
+        this.setState({
+            release_mainStyle: e.target.value
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
         
@@ -69,7 +85,9 @@ export default class CreateRelease extends Component {
             release_year: this.state.release_year,
             release_format: this.state.release_format,
             release_listened: this.state.release_listened,
-            release_imguri: 'http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg'
+            release_imguri: ('http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg').replace(/\s+/g, ''),
+            release_bandCountry: this.state.release_bandCountry,
+            release_mainStyle: this.state.release_mainStyle,
         };
 
         axios.post('http://localhost:4000/releases/add', newRelease)
@@ -81,7 +99,9 @@ export default class CreateRelease extends Component {
             release_year: '',
             release_format: '',
             release_listened: false,
-            release_imguri: 'http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg'
+            release_imguri: ('http://localhost/images/'+this.state.release_band+'_'+this.state.release_title+'.jpg').replace(/\s+/g, ''),
+            release_bandCountry: this.state.release_bandCountry,
+            release_mainStyle: this.state.release_mainStyle,
         })
     
         console.log(`Form submitted:`);
@@ -126,6 +146,16 @@ export default class CreateRelease extends Component {
                                 />
                     </div>
                     <div className="form-group">
+                        <label>countryBand: </label>
+                        <input 
+                                type="text" 
+                                className="form-control"
+                                value={this.state.release_bandCountry}
+                                onChange={this.onChangeReleasecountryBand}
+                                />
+                    </div>
+
+                    <div className="form-group">
                         <div className="form-check form-check-inline">
                             <input  className="form-check-input" 
                                     type="radio" 
@@ -152,6 +182,36 @@ export default class CreateRelease extends Component {
                                     onChange={this.onChangeReleaseFormat}
                                     />
                             <label className="form-check-label">K7</label>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Black Metal"
+                                    checked={this.state.release_mainStyle==='Black Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Black Metal</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Death Metal" 
+                                    checked={this.state.release_mainStyle==='Death Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Death Metal</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Thrash Metal" 
+                                    checked={this.state.release_mainStyle==='Thrash Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Thrash Metal</label>
                         </div>
                     </div>
 

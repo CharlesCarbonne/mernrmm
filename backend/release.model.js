@@ -19,7 +19,13 @@ let Release = new Schema({
     },
     release_imguri:{
         type: String
-    }
+    },
+    release_bandCountry:{
+        type: String
+    },
+    release_mainStyle:{
+        type: String
+    },
 });
 
 module.exports = mongoose.model('Release', Release);

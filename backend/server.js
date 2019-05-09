@@ -86,7 +86,9 @@ releasesRoutes.route('/update/:id').post(function(req, res) {
             release.release_format = req.body.release_format;
             release.release_year = req.body.release_year;
             release.release_listened = req.body.release_listened;
-            release.release_imguri = 'http://localhost/images/'+release.release_band +'_'+release.release_title+'.jpg'
+            release.release_imguri = ('http://localhost/images/'+release.release_band +'_'+release.release_title+'.jpg').replace(/\s+/g, '');
+            release_bandCountry = req.body.release_bandCountry;
+            release.release_mainStyle = req.body.release_mainStyle;
             release.save().then(release => {
                 res.json('Release updated!');
             })

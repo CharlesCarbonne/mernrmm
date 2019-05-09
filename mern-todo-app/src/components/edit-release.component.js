@@ -11,14 +11,19 @@ export default class EditRelease extends Component {
         this.onChangeReleaseYear = this.onChangeReleaseYear.bind(this);
         this.onChangeReleaseFormat = this.onChangeReleaseFormat.bind(this);
         this.onChangeReleaseListened = this.onChangeReleaseListened.bind(this);
+        this.onChangeReleaseimguri = this.onChangeReleaseimguri.bind(this);
+        this.onChangeReleasecountryBand = this.onChangeReleasecountryBand.bind(this);
+        this.onChangeReleasemainStyle = this.onChangeReleasemainStyle.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             release_title: '',
             release_band: '',
-            release_format: '',
             release_year: '',
-            release_listened : false
+            release_format: '',
+            release_listened : true,
+            release_bandCountry: '',
+            release_mainStyle: '',
         }
     }
 
@@ -30,7 +35,9 @@ export default class EditRelease extends Component {
                     release_band: response.data.release_band,
                     release_format: response.data.release_format,
                     release_year: response.data.release_year,
-                    release_listened: response.data.release_listened
+                    release_listened: response.data.release_listened,
+                    release_bandCountry: response.data.release_bandCountry,
+                    release_mainStyle: response.data.release_mainStyle
                 })   
             })
             .catch(function (error) {
@@ -56,6 +63,12 @@ export default class EditRelease extends Component {
         });
     }
 
+    onChangeReleaseimguri(e) {
+        this.setState({
+            release_imguri: e.target.value
+        });
+    }
+
     onChangeReleaseYear(e) {
         this.setState({
             release_year: e.target.value
@@ -68,6 +81,19 @@ export default class EditRelease extends Component {
         });
     }
 
+    onChangeReleasecountryBand(e) {
+        this.setState({
+            release_bandCountry: e.target.value
+        });
+    }
+
+    onChangeReleasemainStyle(e) {
+        this.setState({
+            release_mainStyle: e.target.value
+        });
+    }
+        
+
     onSubmit(e) {
         e.preventDefault();
         const obj = {
@@ -75,7 +101,9 @@ export default class EditRelease extends Component {
             release_band: this.state.release_band,
             release_format: this.state.release_format,
             release_year: this.state.release_year,
-            release_listened: this.state.release_listened
+            release_listened: this.state.release_listened,
+            release_bandCountry: this.state.release_bandCountry,
+            release_mainStyle: this.state.release_mainStyle,
         };
         console.log(obj);
         axios.post('http://localhost:4000/releases/update/'+this.props.match.params.id, obj)
@@ -144,6 +172,37 @@ export default class EditRelease extends Component {
                             <label className="form-check-label">K7</label>
                         </div>
                     </div>
+
+                    <div className="form-group">
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Black Metal"
+                                    checked={this.state.release_mainStyle==='Black Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Black Metal</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Death Metal" 
+                                    checked={this.state.release_mainStyle==='Death Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Death Metal</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input" 
+                                    type="radio" 
+                                    value="Thrash Metal" 
+                                    checked={this.state.release_mainStyle==='Thrash Metal'} 
+                                    onChange={this.onChangeReleasemainStyle}
+                                    />
+                            <label className="form-check-label">Thrash Metal</label>
+                        </div>
+                    </div>
+
                     <div className="form-check">
                         <input  className="form-check-input"
                                 id="completedCheckbox"
@@ -151,7 +210,7 @@ export default class EditRelease extends Component {
                                 name="completedCheckbox"
                                 onChange={this.onChangeReleaseListened}
                                 checked={this.state.release_listened}
-                                value={this.state.release_listened}
+                                value={this.onChangeReleaseListened}
                                 />
                         <label className="form-check-label" htmlFor="completedCheckbox">
                             Listened

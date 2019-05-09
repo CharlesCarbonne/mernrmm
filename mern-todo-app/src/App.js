@@ -7,6 +7,9 @@ import EditRelease from "./components/edit-release.component";
 import CreateRelease from "./components/create-release.component";
 import ReleasesList from "./components/releases-list.component";
 import ReleasesListCd from "./components/releases-listcd.component";
+import ReleasesListK7 from "./components/releases-listk7.component";
+import ReleasesListVinyl from "./components/releases-listvinyl.component";
+
 
 
 class App extends Component {
@@ -39,6 +42,8 @@ class App extends Component {
           <br/>
           <Route path="/" exact component={ReleasesList} />
           <Route path="/cd" exact component={ReleasesListCd} />
+          <Route path="/k7" exact component={ReleasesListK7} />
+          <Route path="/vinyl" exact component={ReleasesListVinyl} />
           <Route path="/edit/:id" component={EditRelease} />
           <Route path="/create" component={CreateRelease} />
         </div>

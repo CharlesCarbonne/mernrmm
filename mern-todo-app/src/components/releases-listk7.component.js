@@ -6,7 +6,7 @@ import axios from 'axios';
 const Release = props => (
 
     <tr>
-        <td className={props.release.release_listened ? 'listened' : ''}  width="20%" height="20%"><img src={props.release.release_imguri} width="70%" height="70%"></img></td>        
+        <td className={props.release.release_listened ? 'listened' : ''}  width="20%" height="20%"><img src={props.release.release_imguri} width="70%" height="70%" alt={props.release.release_imguri}></img></td>        
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_band}</td>
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_title}</td>
         <td className={props.release.release_listened ? 'listened' : ''}>{props.release.release_year}</td>
